@@ -54,7 +54,7 @@ exports.findByIdDetail = function(req, res) {
   console.log("findByIdDetail.id:"+id);    
   db.collection(appid, function(err, collection) {
     collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
-        res.render('detail', {locals: {"log":log,"appid":appid,"id":id} });
+        res.render('detail', {locals: {"log": item,"appid":appid,"id":id} });
     });
   });
 };
