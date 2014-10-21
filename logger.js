@@ -175,7 +175,7 @@ function loadListLogs(appid,res) {
         },
         function(callback) {        
             db.collection(appid, function(err, collection) {
-                collection.find().toArray(function(err, items) {
+                collection.find().sort({USER_CRASH_DATE: -1}).toArray(function(err, items) {
             		for (var i = 0; i < items.length; i++) {
             				if (items[i].USER_APP_START_DATE.length > 0 ) {
             					items[i].USER_APP_START_DATE = moment(items[i].USER_APP_START_DATE).format(prop.date_format);
