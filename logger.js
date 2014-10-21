@@ -5,7 +5,7 @@ var moment = require('moment');
 var async = require('async');
 var ejs = require('ejs');
 var utils = require('./utils');
-var prettyPrint = require('./prettyprint');
+var prettyPrint = require('./prettyprint.');
 
 var DB_NAME = prop.name_database;
 
@@ -55,7 +55,7 @@ exports.findByIdDetail = function(req, res) {
   console.log("findByIdDetail.id:"+id);    
   db.collection(appid, function(err, collection) {
     collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
-      var html = prettyPrint(item);
+      var html = prettyPrint.prettyPrint(item);
 
         res.render('detail', {locals: {"log":log, "data": html,"appid":appid,"id":id} });
     });
