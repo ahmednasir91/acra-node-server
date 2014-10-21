@@ -4,6 +4,7 @@ var email = require('./email.js');
 var moment = require('moment');
 var async = require('async');
 var ejs = require('ejs');
+var utils = require('./utils');
 
 var DB_NAME = prop.name_database;
 
@@ -90,7 +91,7 @@ exports.deleteLog = function(req, res) {
 // Method to add info from  mobile
 exports.addLog = function(req, res) {
   var appid = req.params.appid;
-  var log = req.body;
+  var log = utils.strObjectToData(req.body);
   console.log("addLog.appid:"+appid);    
   db.collection(appid, function(err, collection) {
     collection.insert(log, {safe:true}, function(err, result) {
