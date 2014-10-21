@@ -5,7 +5,7 @@ var moment = require('moment');
 var async = require('async');
 var ejs = require('ejs');
 var utils = require('./utils');
-var json2html = require('node-json2html');
+var prettyprint = require('./prettyprint');
 
 var DB_NAME = prop.name_database;
 
@@ -55,12 +55,9 @@ exports.findByIdDetail = function(req, res) {
   console.log("findByIdDetail.id:"+id);    
   db.collection(appid, function(err, collection) {
     collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
+      var html = prettyPrint(item);
 
-      var transform = {'tag':'li','html':'${a} - ${b}'};
-
-      var html = json2html.transform(item,transform);
-
-        res.render('detail', {locals: {"log":html,"appid":appid,"id":id} });
+        res.render('detail', {locals: {"log":log, "data": html,"appid":appid,"id":id} });
     });
   });
 };
