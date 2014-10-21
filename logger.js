@@ -177,15 +177,15 @@ function loadListLogs(appid,res) {
             db.collection(appid, function(err, collection) {
                 collection.find().toArray(function(err, items) {
             		for (var i = 0; i < items.length; i++) {
-        				if (items[i].USER_APP_START_DATE.length > 0 ) {
-        					items[i].USER_APP_START_DATE = moment(items[i].USER_APP_START_DATE).format(prop.date_format);
-                  var sp = items[i].SHARED_PREFERENCES;
-                  if(sp && sp.default_CAR_DRIVER_ID && sp.default_NAME) {
-                    items[i].CAR_DRIVER = "[" + sp.default_CAR_DRIVER_ID + "] - " + sp.default_NAME; 
-                  } else {
-                    items[i].CAR_DRIVER = "Unknown"; 
-                  }
-        				}
+            				if (items[i].USER_APP_START_DATE.length > 0 ) {
+            					items[i].USER_APP_START_DATE = moment(items[i].USER_APP_START_DATE).format(prop.date_format);
+            				}
+                    var sp = items[i].SHARED_PREFERENCES;
+                      if(sp && sp.default_CAR_DRIVER_ID && sp.default_NAME) {
+                        items[i].CAR_DRIVER = "[" + sp.default_CAR_DRIVER_ID + "] - " + sp.default_NAME; 
+                      } else {
+                        items[i].CAR_DRIVER = "Unknown"; 
+                      }
                     }	
                     resultSearch.logs = items;
     			    callback();
