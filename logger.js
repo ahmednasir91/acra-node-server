@@ -5,6 +5,7 @@ var moment = require('moment');
 var async = require('async');
 var ejs = require('ejs');
 var utils = require('./utils');
+var json2html = require('node-json2html');
 
 var DB_NAME = prop.name_database;
 
