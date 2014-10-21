@@ -5,7 +5,7 @@ var moment = require('moment');
 var async = require('async');
 var ejs = require('ejs');
 var utils = require('./utils');
-var prettyPrint = require('./prettyprint.');
+var prettyPrint = require('./prettyprint');
 
 var DB_NAME = prop.name_database;
 
