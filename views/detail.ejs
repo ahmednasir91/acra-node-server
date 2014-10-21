@@ -79,7 +79,9 @@ function deleteYes() {
     <button class="btn btn-primary" type="button" onclick="javascript:myFunction()">
       Delete
     </button>
-<%= log  %>
+<div id="data">
+	
+</div>
 </div>
 
 <div id="myModal" class="modal hide fade">
@@ -106,6 +108,11 @@ function deleteYes() {
     <script src="/js/bootstrap-transition.js"></script>
     <script src="/js/bootstrap-modal.js"></script>
     <script src="/js/prettyprint.js"></script>
+
+    <script>
+    	var jsonStr = <%= log  %>;
+    	showTree(jsonStr);
+    </script>
 
 </body> 
 </html> 
