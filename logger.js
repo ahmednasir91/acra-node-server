@@ -60,7 +60,7 @@ exports.findByIdDetail = function(req, res) {
 
       var html = json2html.transform(item,transform);
 
-        res.render('detail', {locals: {"log":item,"appid":appid,"id":id} });
+        res.render('detail', {locals: {"log":html,"appid":appid,"id":id} });
     });
   });
 };
