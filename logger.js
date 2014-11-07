@@ -186,6 +186,12 @@ function loadListLogs(appid,res) {
                       } else {
                         items[i].CAR_DRIVER = "Unknown"; 
                       }
+
+                      items[i].BuildType = "Unknown"; 
+                      
+                      if(items[i].CUSTOM_DATA && items[i].CUSTOM_DATA.BuildType) {
+                        items[i].BuildType = items[i].CUSTOM_DATA.BuildType; 
+                      }
                     }	
                     resultSearch.logs = items;
     			    callback();

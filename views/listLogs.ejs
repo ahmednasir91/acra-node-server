@@ -136,6 +136,7 @@
 <thead> 
 <tr> 
     <th>Date</th> 
+    <th>Build Type</th> 
     <th>Driver</th> 
     <th>Phone model</th> 
     <th>App Version Name</th> 
@@ -149,6 +150,7 @@
   <% list.forEach(function(element){ %>
 	<tr> 
         <th><%= element.USER_APP_START_DATE %></th> 
+        <th><%= element.BUILD_TYPE %></th> 
 		<th><%= element.CAR_DRIVER %></th> 
 		<th><%= element.PHONE_MODEL %></th> 
 		<th><%= element.APP_VERSION_NAME %></th> 
