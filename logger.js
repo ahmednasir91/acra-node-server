@@ -187,10 +187,10 @@ function loadListLogs(appid,res) {
                         items[i].CAR_DRIVER = "Unknown"; 
                       }
 
-                      items[i].BuildType = "Unknown"; 
+                      items[i].BUILD_TYPE = "Unknown"; 
                       
                       if(items[i].CUSTOM_DATA && items[i].CUSTOM_DATA.BuildType) {
-                        items[i].BuildType = items[i].CUSTOM_DATA.BuildType; 
+                        items[i].BUILD_TYPE = items[i].CUSTOM_DATA.BuildType; 
                       }
                     }	
                     resultSearch.logs = items;
