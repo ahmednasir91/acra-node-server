@@ -181,8 +181,8 @@ function loadListLogs(appid,res) {
             					items[i].USER_APP_START_DATE = moment(items[i].USER_APP_START_DATE).format(prop.date_format);
             				}
                     var sp = items[i].SHARED_PREFERENCES;
-                      if(sp && sp.default_CAR_DRIVER_ID && sp.default_NAME) {
-                        items[i].CAR_DRIVER = "[" + sp.default_CAR_DRIVER_ID + "] - " + sp.default_NAME; 
+                      if(sp && sp.default_USER_ID && sp.default_NAME) {
+                        items[i].CAR_DRIVER = "[" + sp.default_USER_ID + "] - " + sp.default_NAME; 
                       } else {
                         items[i].CAR_DRIVER = "Unknown"; 
                       }
