@@ -189,8 +189,10 @@ function loadListLogs(appid,res) {
 
                       items[i].BUILD_TYPE = "Unknown"; 
                       
-                      if(items[i].CUSTOM_DATA && items[i].CUSTOM_DATA.BuildType) {
-                        items[i].BUILD_TYPE = items[i].CUSTOM_DATA.BuildType; 
+                      if(items[i].CUSTOM_DATA && items[i].CUSTOM_DATA.length > 0) {
+                        if(items[i].CUSTOM_DATA[0].contains("BuildType")) {  
+                          items[i].BUILD_TYPE = items[i].CUSTOM_DATA[0].replace("BuildType = ", ""); 
+                        }
                       }
                     }	
                     resultSearch.logs = items;
