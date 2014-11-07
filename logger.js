@@ -190,7 +190,7 @@ function loadListLogs(appid,res) {
                       items[i].BUILD_TYPE = "Unknown"; 
                       
                       if(items[i].CUSTOM_DATA && items[i].CUSTOM_DATA.length > 0) {
-                        if(items[i].CUSTOM_DATA[0].contains("BuildType")) {  
+                        if(items[i].CUSTOM_DATA[0].indexOf("BuildType") !== -1) {  
                           items[i].BUILD_TYPE = items[i].CUSTOM_DATA[0].replace("BuildType = ", ""); 
                         }
                       }
