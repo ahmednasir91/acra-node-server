@@ -176,10 +176,14 @@ function loadListLogs(appid,res) {
         function(callback) {        
             db.collection(appid, function(err, collection) {
                 collection.find().sort({USER_CRASH_DATE: -1}).limit(500).toArray(function(err, items) {
-            		for (var i = 0; i < items.length; i++) {
-            				if (items[i].USER_APP_START_DATE.length > 0 ) {
-            					items[i].USER_APP_START_DATE = moment(items[i].USER_APP_START_DATE).format(prop.date_format);
-            				}
+                  if(err) {
+                    console.log(err);
+                  } 
+                  if(items) {
+                    for (var i = 0; i < items.length; i++) {
+                    if (items[i].USER_APP_START_DATE.length > 0 ) {
+                      items[i].USER_APP_START_DATE = moment(items[i].USER_APP_START_DATE).format(prop.date_format);
+                    }
                     var sp = items[i].SHARED_PREFERENCES;
                       if(sp && sp.default_USER_ID && sp.default_NAME) {
                         items[i].CAR_DRIVER = "[" + sp.default_USER_ID + "] - " + sp.default_NAME; 
@@ -194,8 +198,9 @@ function loadListLogs(appid,res) {
                           items[i].BUILD_TYPE = items[i].CUSTOM_DATA[0].replace("BuildType = ", ""); 
                         }
                       }
-                    }	
-                    resultSearch.logs = items;
+                    } 
+                  }
+                  resultSearch.logs = items;
     			    callback();
                 });
             });
