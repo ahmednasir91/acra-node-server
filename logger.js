@@ -63,7 +63,7 @@ exports.findByIdDetail = function(req, res) {
 exports.findAll = function(req, res) {
     var appid = req.params.appid;
     console.log("findAll.appid:"+appid);    
-    loadListLogs(appid,res);
+    getLogsList(appid,res);
 };
 
 // VIEW - /views/listMobiles.ejs
@@ -131,6 +131,43 @@ exports.logout =  function (req, res) {
   req.session = null;
   res.clearCookie(prop.key);
   res.redirect('/index.html');
+}
+
+function getLogsList(appid,res) {
+  db.collection(appid, function(err, collection) {
+    collection.find().sort({USER_CRASH_DATE: -1}).limit(500).toArray(function(err, items) {
+      if(err) {
+        console.log(err);
+      } 
+      if(items) {
+        for (var i = 0; i < items.length; i++) {
+          if (items[i].USER_APP_START_DATE.length > 0 ) {
+            items[i].USER_APP_START_DATE = moment(items[i].USER_APP_START_DATE).format(prop.date_format);
+          }
+          var sp = items[i].SHARED_PREFERENCES;
+          if(sp && sp.default_USER_ID && sp.default_NAME) {
+            items[i].CAR_DRIVER = "[" + sp.default_USER_ID + "] - " + sp.default_NAME; 
+          } else {
+            items[i].CAR_DRIVER = "Unknown"; 
+          }
+
+          items[i].BUILD_TYPE = "Unknown"; 
+
+          if(items[i].CUSTOM_DATA && items[i].CUSTOM_DATA.length > 0) {
+            if(items[i].CUSTOM_DATA[0].indexOf("BuildType") !== -1) {  
+              items[i].BUILD_TYPE = items[i].CUSTOM_DATA[0].replace("BuildType = ", ""); 
+            }
+          }
+        } 
+      }
+      res.render('listLogs', {
+        locals: { 
+          "list":items,
+          "appid":appid
+        } 
+      });
+    });
+  });
 }
 
 
